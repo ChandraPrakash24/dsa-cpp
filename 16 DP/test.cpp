@@ -3,6 +3,6 @@ using namespace std;
 
 int main()
 {
-    cout<<"Hellow"<<endl;
+    cout<<"Hellow2"<<endl;
     return 0;
 }
