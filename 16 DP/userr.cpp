@@ -3,6 +3,6 @@ using namespace std;
 
 int main()
 {
-    cout<<"Jai shree ram"<<endl;
+    cout<<"Jai shree Ram"<<endl;
     return 0;
 }
