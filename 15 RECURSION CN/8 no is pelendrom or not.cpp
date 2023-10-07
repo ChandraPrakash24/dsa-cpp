@@ -1,16 +1,33 @@
-// #include<bits/stdc++.h>
-// using namespace std;
+#include <iostream>
+using namespace std;
 
-// bool isPalindrome(int n){
-//     if()
-// }
+bool isPalindrome(int n, int orignal, int& revirsed){
+    //base case
+    if(n==0) return orignal == revirsed;
+
+    //process
+    int lastDigit = n%10;
+
+    revirsed = revirsed * 10 + lastDigit;
+
+    //call
+    isPalindrome(n/10,orignal,revirsed);
 
 
-// int main()
-// {
-//     isPalindrome(1221); 
-    
+}
 
+bool isPalindrome(int n){
+    int revirsed = 0;
+    isPalindrome(n,n,revirsed);
+}
 
-//     return 0;
-// }
+int main() {
+    int num;  cin>>num;
+    if (isPalindrome(num)) {
+        cout << "Palindrome" << endl;
+    } else {
+        cout << "Not Palindrome" << endl;
+    }
+
+    return 0;
+}
