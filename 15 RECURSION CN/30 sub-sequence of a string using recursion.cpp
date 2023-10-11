@@ -33,7 +33,7 @@ int main()
     // dynamic string array with 2^n size
     string* outputArray = new string[(1 << n)]; 
 
-    // outputArraySize coz array don't have any length function
+    // outputArraySize coz array don't have any length function OR kitne subsequences hai
     int outputArraySize = subSequence(inputString,outputArray);
 
     // printing finaly modifyed array
