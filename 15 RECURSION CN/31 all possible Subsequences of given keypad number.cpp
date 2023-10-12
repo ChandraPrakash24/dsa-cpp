@@ -1,3 +1,5 @@
+//       all posible string
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -24,16 +26,93 @@ string getNumpadCharacters(int d) {
     }
 }
 
+int keypad(int input, string out[]){
+    // base
+    if(input == 0){
+        out[0] == " ";
+        return 1;
+    }
+
+    int lastDigit = input%10;
+    int smallNumber = input/10;
+    int smallOutputSize = keypad(smallNumber,out);
+
+    string options = getNumpadCharacters(lastDigit);
+
+    for(int i=0; i<options.length()-1; i++){
+        for(int j=0; j<smallOutputSize; j++){
+            //jump
+            out[j + (i + 1) * smallOutputSize] = out[j];
+        }
+    }
+
+    int k=0;
+    for(int i=0; i<options.length(); i++){
+        for(int j=0; j<smallOutputSize; j++){
+            out[k] = out[k] + options[i];
+            k++;
+        }
+    }
+
+    return smallOutputSize * options.length();
+
+}
+
 int main()
 {
-        
-    
-
+    int n;   cin>>n;
+    string* out = new string[1000];
+    int count = keypad(n,out);
+    for(int i=0; i<count; i++){
+        cout<<out[i]<<endl;
+    }
 
     return 0;
 }
+// output
+// 23
+// ad
+// bd
+// cd
+// ae
+// be
+// ce
+// af
+// bf
+// cf
 
-//     SECOND ATTEMPT
+// 234
+// adg
+// bdg
+// cdg
+// aeg
+// beg
+// ceg
+// afg
+// bfg
+// cfg
+// adh
+// bdh
+// cdh
+// aeh
+// beh
+// ceh
+// afh
+// bfh
+// cfh
+// adi
+// bdi
+// cdi
+// aei
+// bei
+// cei
+// afi
+// bfi
+// cfi
+
+
+
+//     SECOND ATTEMPT (for the subsequences)
 
 // #include<bits/stdc++.h>
 // using namespace std;
