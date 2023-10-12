@@ -34,3 +34,11 @@ int main() {
 
     return 0;
 }
+// output
+// 2
+// 7
+// aazbbby
+// OUTPUT: azby
+// 6
+// aabbcb
+// OUTPUT: abcb
