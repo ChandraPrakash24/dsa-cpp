@@ -15,7 +15,6 @@ bool canNinjaWin(string& str) {
             modified_str[i + 1] = '*';
 
             // If Ninja's friend loses with this move, Ninja wins.
-            cout<<canNinjaWin(modified_str);
             if (canNinjaWin(modified_str) == 0) {
                 return true;
             }
