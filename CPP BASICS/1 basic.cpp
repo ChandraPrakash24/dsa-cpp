@@ -53,6 +53,20 @@ cout<<'dhlks'; //6251387 (garabge value or UD or un defined or un valid~UV)
 NOTE: character --> int
       int --x char
 
+datatype var_name = value; (case sensative)
+
+DATATYPE
+
+- primitive
+    int,char,bool,float(double,long double),void
+- derived
+    string,vector,map,set,priority_queue
+
+
+x += 5; // x = x + 5;
+
+
+!(a == b) is equal to a != b 
 
 */
 
