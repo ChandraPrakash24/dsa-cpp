@@ -71,13 +71,26 @@ x += 5; // x = x + 5;
 */
 
 #include<iostream>
-#include<math.h>
 using namespace std;
 
 int main()
 {
-     
 
+     int a,b,c; cin>>a>>b>>c;
 
-    return 0;
+     int x=a, y=b, z=c;
+
+    if(a>b) swap(a,b);
+    if(b>c){
+        swap(b,c);
+        if(a > b) swap(a,b);
+    }
+
+    cout<<a<<endl;
+    cout<<b<<endl;
+    cout<<c<<endl;
+    cout<<endl;
+    cout<<x<<endl;
+    cout<<y<<endl;
+    cout<<z<<endl;
 }
