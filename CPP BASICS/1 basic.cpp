@@ -70,27 +70,58 @@ x += 5; // x = x + 5;
 
 */
 
+// F. Digits Summation
+// time limit per test
+// 0.25 seconds
+// memory limit per test
+// 64 megabytes
+// input
+// standard input
+// output
+// standard output
+
+// Given two numbers N and M. Print the summation of their last digits.
+// Input
+
+// Only one line containing two numbers N, M (0 ≤ N, M ≤ 1018).
+// Output
+
+// Print the answer of the problem.
+// Example
+// Input
+// Copy
+
+// 13 12
+
+// Output
+// Copy
+
+// 5
+
+// Note
+
+// First Example :
+
+// last digit in the first number is 3 and last digit in the second number is 2.
+
+// So the answer is: (3 + 2 = 5)
+
+
+
+
 #include<iostream>
 using namespace std;
 
 int main()
 {
 
-     int a,b,c; cin>>a>>b>>c;
+    int a,b; cin>>a>>b;
 
-     int x=a, y=b, z=c;
+    cout<< (a%10) + (b%10) << endl;    
 
-    if(a>b) swap(a,b);
-    if(b>c){
-        swap(b,c);
-        if(a > b) swap(a,b);
-    }
+    // int lastOne = a%10;
+    // int lastTwo = b%10;
 
-    cout<<a<<endl;
-    cout<<b<<endl;
-    cout<<c<<endl;
-    cout<<endl;
-    cout<<x<<endl;
-    cout<<y<<endl;
-    cout<<z<<endl;
+    // cout<<lastOne + lastTwo << "\n";
+    
 }
