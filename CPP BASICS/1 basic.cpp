@@ -110,18 +110,14 @@ x += 5; // x = x + 5;
 
 
 #include<iostream>
+#include<math.h>
 using namespace std;
 
-int main()
-{
-
-    int a,b; cin>>a>>b;
-
-    cout<< (a%10) + (b%10) << endl;    
-
-    // int lastOne = a%10;
-    // int lastTwo = b%10;
-
-    // cout<<lastOne + lastTwo << "\n";
-    
+int main() {
+    long long A,B;
+    cin >> A>>B;
+    cout<<"floor "<<A<<" / "<<B<<" = "<<floor((double)A/B)<<endl;
+    cout<<"ceil "<<A<<" / "<<B<<" = "<<ceil((double)A/B)<<endl;
+    cout<<"round "<<A<<" / "<<B<<" = "<<round((double)A/B)<<endl;
+    return 0;
 }
