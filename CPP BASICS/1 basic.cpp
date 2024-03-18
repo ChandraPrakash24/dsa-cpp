@@ -109,15 +109,21 @@ x += 5; // x = x + 5;
 
 
 
-#include<iostream>
-#include<math.h>
+#include <iostream>
 using namespace std;
 
 int main() {
-    long long A,B;
-    cin >> A>>B;
-    cout<<"floor "<<A<<" / "<<B<<" = "<<floor((double)A/B)<<endl;
-    cout<<"ceil "<<A<<" / "<<B<<" = "<<ceil((double)A/B)<<endl;
-    cout<<"round "<<A<<" / "<<B<<" = "<<round((double)A/B)<<endl;
+
+    char X;
+    cin >> X;
+
+    if (X >= 'a' && X <= 'z') {
+        X = X - 32;
+        cout << X << endl;
+    } else if (X >= 'A' && X <= 'Z') {
+        X = X + 32;
+        cout << X << endl;
+    }
+
     return 0;
 }
