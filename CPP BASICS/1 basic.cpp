@@ -114,16 +114,10 @@ using namespace std;
 
 int main() {
 
-    char X;
-    cin >> X;
+    int x; cin>>x;
 
-    if (X >= 'a' && X <= 'z') {
-        X = X - 32;
-        cout << X << endl;
-    } else if (X >= 'A' && X <= 'Z') {
-        X = X + 32;
-        cout << X << endl;
-    }
+    if(x & 1)  cout<<"ODD";
+    if((x | 1)>x)  cout<<"EVEN";
 
     return 0;
 }
