@@ -109,15 +109,53 @@ x += 5; // x = x + 5;
 
 
 
+// #include <iostream>
+// using namespace std;
+
+// int main() {
+
+//     double n;  cin>>n;
+//     int m=0,y=0,d=0;
+
+//     if(n >= 356){
+//         y = (n/365);
+//         n -= (y*365);
+//     }
+//     if(n >= 30){
+//         m = (n/30);
+//         n -= (m*30);
+//     }
+//     d = n;
+
+//     cout<<y<<" years"<<endl;
+//     cout<<m<<" months"<<endl;
+//     cout<<d<<" days"<<endl;
+
+//     return 0;
+// }
+
+    // int a,b,c,d;
+    
+
+    // cin>>a>>b>>c>>d;
+
+    // if(c>b) {
+    //     cout<<-1<<endl;
+    //     return 0;
+    // } 
+    // if(d<b){
+    //     cout<<c<<" "<<d<<endl;
+    // }else if(c<a){
+    //     cout<<c<<" "<<b<<endl;
+    // }
+    // else{
+    //     cout<<c<<" "<<b<<endl;
+    // }
 #include <iostream>
 using namespace std;
+int main()
+{       
 
-int main() {
-
-    int x; cin>>x;
-
-    if(x & 1)  cout<<"ODD";
-    if((x | 1)>x)  cout<<"EVEN";
 
     return 0;
 }
