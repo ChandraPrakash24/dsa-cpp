@@ -1,26 +1,34 @@
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
-
-int c=55;
 
 int main()
 {
-    int a = 3;
-    int * b = &a;
+    int myArr[6] = {1,2,3,4,5,6}; 
 
-    // cout<<a<<endl; 
-    // cout<<&a<<endl;
-    cout<<b<<endl;
-    // cout<<&b<<endl;
-    // cout<<*b<<endl;
+    int * p = myArr;
+    cout<<p<<endl;
+    cout<<&p<<endl;
+    cout<<myArr<<endl;
+    // cout<<myArr[myArr]<<endl;
+    cout<<&myArr<<endl;
 
-    int ** c = &b;
-    // cout<<c<<endl;
-    // cout<<*c<<endl;
-    cout<<**c<<endl;
+    cout<<*p++<<endl;
+    cout<<*p++<<endl;
+    cout<<*p++<<endl;
+    cout<<*p++<<endl;
+    cout<<*p++<<endl;
+    cout<<*p++<<endl;
+    cout<<*p++<<endl;
+    cout<<*p++<<endl;
+    cout<<*p++<<endl;
+    cout<<*p++<<endl;
 
-    // c --> b --> a
+    for(int i=0;i<6; i++){
+        // cout<<p[i]<<endl;
+        // cout<<*(p+i)<<endl;
+            // cout<<i<<endl;
+    }
+
 
     return 0;
-
 }
