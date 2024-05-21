@@ -1,33 +1,26 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-typedef struct employee
-{
-    int id;
-    float salary;
-    char gender;
-    string name;
-} ep;
-
-
 int main()
 {
-     
-    ep jhon;
-    jhon.gender = 'm';
-    jhon.id = 4;
-    jhon.name = "jhone doe";
-    jhon.salary = 120.001;
+    // string s; cin>>s;
 
-    // cout<<jhon.gender<<endl;
-    // cout<<jhon.id<<endl;
-    // cout<<jhon.name<<endl;
-    // cout<<jhon.salary<<endl;
+    // for(auto& i : s){
+    //     // if(i != '0' && i!='1'){
+    //     if(i != '1' && i!='0'){
+    //         cout<<"NOt Binary"<<endl;
+    //         exit(0);
+    //     }
+    // } 
+    
+// 1111
+// 0000
+// 0022
+// 1122
 
-    // const string ci = "z";
-    cout<<typeid(jhon).name();
-// std::cout << typeid(ci).name() << '\n';
-
+    cout<<"0 === 0"<<(0 == 0)<<endl;
+    cout<<"0 != 0"<<(0 != 0)<<endl;
+    // cout<<""<<endl;
 
     return 0;
 }
