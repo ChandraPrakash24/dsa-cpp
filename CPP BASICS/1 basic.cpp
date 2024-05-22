@@ -1,26 +1,41 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+class Shop {
+    private:
+        int itemArr[10];
+        int priceArr[10];
+        int cnt;
+    public:
+        void counter(void) { cnt = 0;}
+        void setItem(void);
+        void displayItem(void);
+};
+
+void Shop :: setItem(void){
+    // counter(); // reinitilization again and again
+    cout<<"Enter id for "<<cnt + 1<<" item"<<endl;
+    cin >> itemArr[cnt];
+    cout<<"Enter price for "<<cnt + 1<<" item"<<endl;
+    cin >> priceArr[cnt];
+    cnt++;
+}
+
+void Shop :: displayItem(void){
+    for(int i=0; i<cnt; i++){
+        cout<<"For item "<< i+1 <<" Price is : "<<priceArr[i]<<endl;
+    }
+}
+
 int main()
 {
-    // string s; cin>>s;
+    Shop dukan;
 
-    // for(auto& i : s){
-    //     // if(i != '0' && i!='1'){
-    //     if(i != '1' && i!='0'){
-    //         cout<<"NOt Binary"<<endl;
-    //         exit(0);
-    //     }
-    // } 
-    
-// 1111
-// 0000
-// 0022
-// 1122
-
-    cout<<"0 === 0"<<(0 == 0)<<endl;
-    cout<<"0 != 0"<<(0 != 0)<<endl;
-    // cout<<""<<endl;
+    dukan.counter();    
+    dukan.setItem();    
+    dukan.setItem();    
+    dukan.setItem();
+    dukan.displayItem();
 
     return 0;
 }
