@@ -1,41 +1,40 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Shop {
+class Pointer{
     private:
-        int itemArr[10];
-        int priceArr[10];
-        int cnt;
+        int x,y;
     public:
-        void counter(void) { cnt = 0;}
-        void setItem(void);
-        void displayItem(void);
+        Pointer(int a, int b){
+            x=a;
+            y=b;
+        }
+
+        friend void distance(Pointer, Pointer);
+
+        void display(void);
 };
 
-void Shop :: setItem(void){
-    // counter(); // reinitilization again and again
-    cout<<"Enter id for "<<cnt + 1<<" item"<<endl;
-    cin >> itemArr[cnt];
-    cout<<"Enter price for "<<cnt + 1<<" item"<<endl;
-    cin >> priceArr[cnt];
-    cnt++;
+void Pointer :: display(void){
+    // cout<<"Points are : "<<x<<"and "<<y<<"and there distance are:"<<distance(x.b, y.a)<<endl;
+    cout<<"Points are : "<<x<<"and "<<y<<endl;
 }
 
-void Shop :: displayItem(void){
-    for(int i=0; i<cnt; i++){
-        cout<<"For item "<< i+1 <<" Price is : "<<priceArr[i]<<endl;
-    }
+void distance(Pointer p1, Pointer p2){
+    cout<<"Distance is"<<p1.y-p1.x<<endl;
+    cout<<"Distance is"<<p2.y-p2.x<<endl;
 }
 
 int main()
 {
-    Shop dukan;
+     
+    Pointer p1(3,2), p2(6,3);
 
-    dukan.counter();    
-    dukan.setItem();    
-    dukan.setItem();    
-    dukan.setItem();
-    dukan.displayItem();
+    p1.display();
+    p2.display();
+
+    distance(p1,p2);
+
 
     return 0;
 }
