@@ -5,25 +5,12 @@ using namespace std;
 
 int main() {
 
-    int n; cin>>n;
+    int x=64,res=0;
 
-    if(!n) cout<<-1;
-
-    int count=0;
-
-    while(n){
-        if((n & 1) == 0){
-            count++;
-            n = n >>1;
-        }else if((n & 1)==1){
-            count++;
-            n = n >>1;
-            break;
-        }
+    while(x >>= 1){
+        res++;
     }
-
-    if(!n) cout<<"Set bit at position : "<<count<<endl;
-    else cout<<"This no contain multiple set bit"<<endl;
+    cout<<"log2 "<<res<<endl;
 
   return 0;
 }
