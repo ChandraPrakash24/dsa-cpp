@@ -1,23 +1,27 @@
-#include<bits/stdc++.h>
+// is any set bit in a number and what is its position
+
+#include <iostream>
 using namespace std;
 
-int main()
-{
-    int n,cnt=0; cin>>n;
+int main() {
 
-    if (n == 0) {
-        cout<<"only one digit that is : "<<n<<endl;
-        return 0;
+    int n; cin>>n;
+
+    if(!n) cout<<-1;
+
+    int count=0;
+
+    while(n){
+        if((n & 1) == 0){
+            count++;
+            n = n >>1;
+        }else if((n & 1)==1){
+            count++;
+            break;
+        }
     }
-    while(n != 0){
-        cout<<"Last digit is : "<<n%10<<endl;
-        cnt++;
-        n /= 10;
-    } 
-    
-    cout<<"No of digit Count is "<<cnt<<endl;
 
-    // cout<<n;
+    cout<<"Set bit at position : "<<count<<endl;
 
-    return 0;
+  return 0;
 }
