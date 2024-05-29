@@ -1,12 +1,26 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
+
+bool strPalindrome(string s)
+{
+
+    if (((s.front()) != (s.back())) || s.empty() == 1)
+    {
+        return false;
+    }
+
+    if (s.length() <= 1)
+    {
+        return true;
+    }
+
+    s.erase(0, 1);
+    s.pop_back();
+    return strPalindrome(s);
+}
 
 int main()
 {
-    int x,y;  cin>>x>>y;
-    if((x%y==0) || (y%x==0)) {
-        cout<<"Multiples";
-    }else {
-        cout<<"No Multiples";
-    }
+    cout << strPalindrome("abcba");
+    return 0;
 }
