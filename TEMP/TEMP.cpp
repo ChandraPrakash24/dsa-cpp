@@ -1,26 +1,27 @@
+// Roap Cutting (recursion)
+
 #include <iostream>
 using namespace std;
 
-bool strPalindrome(string s)
-{
+int maxPieces(int n, int a, int b, int c){
+    if(n == 0) return 0;
+    if(n < 0) return -1;
 
-    if (((s.front()) != (s.back())) || s.empty() == 1)
-    {
-        return false;
-    }
+    int temp1 = maxPieces(n-a,a,b,c);
+    int temp2 = maxPieces(n-b,a,b,c);
+    int temp3 = maxPieces(n-c,a,b,c);
 
-    if (s.length() <= 1)
-    {
-        return true;
-    }
+    int pieces = max(max(temp1,temp2),temp3);
 
-    s.erase(0, 1);
-    s.pop_back();
-    return strPalindrome(s);
+    if(pieces == -1) return -1;
+
+    return pieces+1;
+
 }
 
 int main()
 {
-    cout << strPalindrome("abcba");
+    // cout<<maxPieces(15,5,8,7); // 3
+    cout<<maxPieces(23,12,14,11); // 2
     return 0;
 }
