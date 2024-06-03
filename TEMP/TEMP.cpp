@@ -1,52 +1,52 @@
-#include <iostream>
-#include <vector>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-void insertElement(vector<int> &arr, int element) {
-    // Base case: if array is empty or last element is less than or equal to element, insert element at the end
-    if (arr.empty() || arr[arr.size() - 1] <= element) {
-        arr.push_back(element);
+void deleteMiddleElement(stack<int> &s, int n){
+
+    if(n == 1 || s.empty()){
+        s.pop();
         return;
     }
 
-    // Hypothesis: Sort the array excluding the last element
-    int last = arr.back();
-    arr.pop_back();
-    insertElement(arr, element);
 
-    // Induction: Restore the last element and insert it into the correct position
-    arr.push_back(last);
+    int top = s.top();
+    s.pop();
+    deleteMiddleElement(s,n-1);
+    s.push(top);
 }
 
-void sort(vector<int> &arr) {
-    // Base case: if array has only one element or is empty, it's already sorted
-    if (arr.size() <= 1)
-        return;
+int main()
+{
+    stack<int> s;
 
-    // Hypothesis: Sort the array excluding the last element
-    int last = arr.back();
-    arr.pop_back();
-    sort(arr);
+        // Push elements onto the stack
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.push(4);
+    s.push(5);
+    s.push(6);
 
-    // Induction: Insert the last element into the sorted array
-    insertElement(arr, last);
-}
+    stack<int> temp = s;
 
-int main() {
-    vector<int> arr = {5, 2, 4, 3, 1};
+    cout<<"Orignal Stack: "<<endl;
+    while (!temp.empty()) {
+        cout << temp.top() << " ";
+        temp.pop();
+    }
+        cout << endl;
 
-    cout << "Original array: ";
-    for (int num : arr)
-        cout << num << " ";
+    // Delete middle element
+    deleteMiddleElement(s,(s.size()+1)/2);
+    // deleteMiddleElement(s,3);
+
+    cout << "Stack after deleting middle element: ";
+    while (!s.empty()) {
+        cout << s.top() << " ";
+        s.pop();
+    }
     cout << endl;
 
-    sort(arr);
-
-    cout << "Sorted array: ";
-    for (int num : arr)
-        cout << num << " ";
-    cout << endl;
 
     return 0;
 }
