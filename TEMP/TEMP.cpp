@@ -1,18 +1,29 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void deleteMiddleElement(stack<int> &s, int n){
-
-    if(n == 1 || s.empty()){
-        s.pop();
+void insert(stack<int> &s,int top){
+    if(s.empty()){
+        s.push(top);
         return;
     }
 
+    int first = s.top();
+    s.pop();
+    insert(s,top);
+    s.push(first);
+
+} 
+
+void reverceStack(stack<int> &s){
+
+    if(s.size() == 1){
+        return;
+    }
 
     int top = s.top();
     s.pop();
-    deleteMiddleElement(s,n-1);
-    s.push(top);
+    reverceStack(s);
+    insert(s,top);    
 }
 
 int main()
@@ -37,7 +48,7 @@ int main()
         cout << endl;
 
     // Delete middle element
-    deleteMiddleElement(s,(s.size()+1)/2);
+    reverceStack(s);
     // deleteMiddleElement(s,3);
 
     cout << "Stack after deleting middle element: ";
