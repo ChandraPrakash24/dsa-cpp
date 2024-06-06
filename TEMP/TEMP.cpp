@@ -1,22 +1,23 @@
+// print unique subset
+
 #include<bits/stdc++.h>
 using namespace std;
 
-class Car{
-    public:
-        string color;
-        void race(void);
-};
-
-void Car :: race(void){
-    cout<<"Bhroom"<<endl;
+void printPair(int arr[],int size=5){
+    for(int i=0;i<size;i++){
+        for(int j=i+1;j<size;j++){
+            cout<<arr[i]<<" , "<<arr[j]<<endl;
+        }
+        cout<<endl;
+    }
 }
 
 int main()
 {
-    Car c1;
-    c1.color="black";
-    cout<<c1.color<<endl;
-    c1.race();
+    int arr[] = {1,2,3,4,5}; 
+    
+    printPair(arr);
+
 
     return 0;
 }
