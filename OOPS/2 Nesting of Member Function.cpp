@@ -4,9 +4,9 @@ using namespace std;
 
 class Binary {
     string s;
+    void check_binary(void); // only function of the class where able to acces this
     public:
         void setData(void);
-        void check_binary(void);
         void onceCompliment(void);
         void displayData(void);
 };
@@ -26,6 +26,7 @@ void Binary :: check_binary(void){
 }
 
 void Binary :: onceCompliment(void){
+    check_binary(); // nesting of member function
     for(auto& c : s){
         // if(c == '0') c == '1';
         // else c == '0';
@@ -44,7 +45,7 @@ int main()
 {
     Binary b;
     b.setData();
-    b.check_binary();
+    // b.check_binary();
     b.onceCompliment();
     b.displayData();
 
