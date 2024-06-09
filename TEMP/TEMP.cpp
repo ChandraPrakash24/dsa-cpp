@@ -26,6 +26,7 @@ void Binary :: check_binary(void){
 }
 
 void Binary :: onceCompliment(void){
+    check_binary();
     for(auto& c : s){
         // if(c == '0') c == '1';
         // else c == '0';
@@ -44,7 +45,7 @@ int main()
 {
     Binary b;
     b.setData();
-    b.check_binary();
+    // b.check_binary();
     b.onceCompliment();
     b.displayData();
 
