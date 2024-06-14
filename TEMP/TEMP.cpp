@@ -1,50 +1,96 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <string>
 using namespace std;
 
-class Employee {
-    int id;
-    static int counter;
+void permutationWithSpaces(string str, string out) {
+    // Base case: If the input string is empty, print the output
+    if (str.empty()) {
+        cout << out << endl;
+        return;
+    }
 
-    public:
-        void setData(){
-            cout<<"Enter id: "<<endl;
-            cin>>id;
-        }
 
-        void displayData(){
-            cout<<"the id of employe "<<counter++<<" is : "<<id<<endl;
-        }
+    // Include a space followed by the first character of the input string in the output
+    permutationWithSpaces(str.substr(1), out + ' ' + str[0]);
 
-        // static function are only allowed to access static variables only
-        // static methodes are also class methods it contain no relation with objects
-        static void printCounter(){
-            cout<<counter<<endl;
-        }
-};
+    // Include only a space in the output
+    permutationWithSpaces(str.substr(1), out + str[0]);
+}
 
-// it's a class'es variable shared by all objects
-int Employee :: counter; //(Compolusary step) default value is 0 also you can do like this counter=588;
+int main() {
+    string input;
+    cout << "Enter a string: ";
+    cin >> input;
 
-int main()
-{
-    Employee cp,ak,bh;
-
-    cp.setData();
-    cp.displayData();
-
-    ak.setData();
-    ak.displayData();
-
-    bh.setData();
-    bh.displayData();
-
-    // cout<<counter; // can't acces like this, but you can acces methods like this below is the example   
-
-    
-    // int fCou = Employee::printCounter(); --> change type to return
-
-    cout<<"Final count is : ";
-    Employee::printCounter(); // Final count is : 3
+    permutationWithSpaces(input.substr(1), string(1, input[0]));
 
     return 0;
 }
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// void solve(string i, string o){
+
+//     if(o.length() == 0){
+//         cout<<o<<endl;
+//         return;
+//     }
+
+//     // string op1 = "", op2 = "";
+//     // op1.push_back(' ');
+//     // op1.push_back(i[0]);
+
+//     // op2.push_back(i[0]);
+
+//     string op1 = o + ' ' + i[0];
+//     string op2 = o + i[0];
+
+//     i.erase(i.begin() + 0);
+
+//     solve(i, op1);
+//     solve(i, op2);
+
+//     return;
+
+// }
+
+
+// int main()
+// {
+//     string input; cin >> input;
+
+//     string output = "";
+
+//     output.push_back(input[0]);
+//     input.erase(input.begin() + 0); 
+    
+//     solve(input,output);
+
+
+//     return 0;
+// }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// void permutationWithSpaces(string str, string out, int index){
+
+//     if(index == 3){
+//         cout<<out<<endl;
+//         return;
+//     }
+
+//     return permutationWithSpaces(str.pop_back(), str + " " + str[0], index+1);
+//     return permutationWithSpaces(str.pop_back(), str + str[0], index+1);
+// }
+
+// int main()
+// {
+//     permutationWithSpaces("ABC", "A", 1);    
+    
+
+
+//     return 0;
+// }
