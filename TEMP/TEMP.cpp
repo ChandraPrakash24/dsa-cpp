@@ -1,32 +1,42 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
+int longestOnes(string str, int k) {
+    int s = 0, max_length = 0, zero_count = 0; // Use size_t for s, max_length, zero_count
 
-void solve(string s, string out){
+    for (int e = 0; e < str.length(); e++) { // Use size_t for e
+        if (str[e] == '0') {
+            zero_count++;
+        }
 
-    if(s.empty()){
-        cout<<out<<endl;
-        return;
+        while (zero_count > k) {
+            if (str[s] == '0') {
+                zero_count--;
+            }
+            s++;
+        }
+
+        max_length = max(max_length, e - s + 1);
+    }
+    
+
+
+    return max_length;
+}
+
+int main() {
+    string str;
+    getline(cin, str); // Read entire line including spaces
+
+    int k;
+    cin >> k;
+
+    if (str.empty()) {
+        cout << "empty string";
+        return 0;
     }
 
-    solve(s.substr(1),out + ' ' + s[0]);
-    solve(s.substr(1),out + s[0]);
+    cout << longestOnes(str, k);
 
-}
-
-int main()
-{
-    string s; cin>>s;
-
-    solve(s.substr(1),string(1,s[0])); 
-    
     return 0;
 }
-
-// out:-
-// abc
-
-// a b c
-// a bc
-// ab c
-// abc
