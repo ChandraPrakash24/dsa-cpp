@@ -1,42 +1,35 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-int longestOnes(string str, int k) {
-    int s = 0, max_length = 0, zero_count = 0; // Use size_t for s, max_length, zero_count
+int insertElementAt(int arr[], int& current_size, int capacity, int position, int element){
 
-    for (int e = 0; e < str.length(); e++) { // Use size_t for e
-        if (str[e] == '0') {
-            zero_count++;
-        }
+    cout<<"Current capicity is: "<<current_size<<endl;
+    if(current_size == capacity) return -1;
 
-        while (zero_count > k) {
-            if (str[s] == '0') {
-                zero_count--;
-            }
-            s++;
-        }
+    // int pos = position-1;
 
-        max_length = max(max_length, e - s + 1);
+    for(int i=current_size-1; i>=position-1; i--){
+        arr[i+1] = arr[i];
     }
-    
 
+    arr[position-1] = element;
+    current_size++;
+    cout<<"Now current capicity ios: "<<current_size<<endl;
 
-    return max_length;
+    for(int i=0; i<current_size; i++) cout<<arr[i]<<" ";
+
+    cout<<endl;
+
+    return current_size;
+
 }
 
-int main() {
-    string str;
-    getline(cin, str); // Read entire line including spaces
-
-    int k;
-    cin >> k;
-
-    if (str.empty()) {
-        cout << "empty string";
-        return 0;
-    }
-
-    cout << longestOnes(str, k);
+int main(){
+    int arr[5] = {20,5,7};  
+    int current_size = 3;
+    cout<<insertElementAt(arr,current_size,5,2,11);
+    cout<<insertElementAt(arr,current_size,5,5,64);
+    cout<<insertElementAt(arr,current_size,5,3,22);
 
     return 0;
 }
