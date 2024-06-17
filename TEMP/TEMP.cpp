@@ -25,11 +25,14 @@ int getSecondLargestElIndex(int arr[], int n){
 
 int main()
 {
-    int arr[] = {5,20,12,20,10}; 
+    // int arr[] = {5,20,12,20,10}; 
+    int arr[] = {10,10,10}; 
+    int arrSize = sizeof(arr)/sizeof(arr[0]);
     
-    int sl = getSecondLargestElIndex(arr,5);
+    int sl = getSecondLargestElIndex(arr,arrSize);
+    cout<<sl; // -1
 
-    cout<<"The second largest element is : "<<arr[sl]<<" at position : "<<sl+1<<" at array index : (zero based) "<<sl<<endl;
+    // cout<<"The second largest element is : "<<arr[sl]<<" at position : "<<sl+1<<" at array index : (zero based) "<<sl<<endl;
     // OUT:
     // The second largest element is : 12 at position : 3 at array index : (zero based) 2
 
