@@ -1,34 +1,43 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-
-int getSecondLargestElIndex(int arr[], int n){
-
-    if (n < 2) {
-        cout << "Array size should be at least 2" << endl;
-        return -1;
-    }
-
-    int large = 0, sl = -1;
-    for(int i=1; i<n; i++){
-        if(arr[i] > arr[large]){ sl=large; large = i; }
-        else if(arr[i] != arr[large]) {
-            if (sl == -1 || arr[i] > arr[sl]) sl = i;
+bool isSorted(int arr[], int n){
+    for(int i =0; i<n-1; i++){
+        if(arr[i+1] < arr[i]){
+            return false;
+            break;
         }
     }
-    cout<<sl;
-    return sl;
+    return true;
 }
 
 int main()
 {
-    int arr[] = {5,20,12,20,10}; 
-    // int arr[] = {10,10,10}; 
-    int arrSize = sizeof(arr)/sizeof(arr[0]);
-    
-    int sl = getSecondLargestElIndex(arr,arrSize);
-    cout<<arr[sl]; // 12
 
+    int arr[] = {10,8,9};
+    cout<<isSorted(arr,3); 
 
     return 0;
 }
+
+// using reffference:-
+
+// #include <iostream>
+// using namespace std;
+
+// // Function declaration with int& arr and int n
+// bool isSorted(int* arr, int n) {
+//     for (int i = 0; i < n - 1; ++i) {
+//         if (arr[i] > arr[i + 1]) {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+
+// int main() {
+//     int arr[] = {8, 12, 15};
+//     cout << isSorted(arr, 3); // Passes arr as int*
+
+//     return 0;
+// }
