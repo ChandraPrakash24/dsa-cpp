@@ -1,42 +1,32 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void reverseArr(int *arr, int n){
-    int i=0, j=n-1;
-    while(i<=j){
-        swap(arr[i++],arr[j--]);
+void remDupInSortedArr(int *arr, int& n){
+    int j=1;
+    for(int i=1;i<n;i++){
+        if(arr[i] != arr[j-1]){
+            arr[j] = arr[i];
+            j++;
+        }
     }
+    n=j;
 }
+
 
 int main()
 {
 
-    int arr[] = {1,8,8,9};
-    reverseArr(arr,4); 
+    int arr[] = {1,1,1,8,8,9,9,10,10,10,11};
+    // int arr[] = {1,8,9,10,11};
+    // int arr[] = {10,10,10};
+    // int arr[] = {1,8,9,10,10,10,11};
+    int n=11;
+    remDupInSortedArr(arr,n); 
 
-    for(auto& i : arr) cout<<i<<" ";
+
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
 
     return 0;
 }
-
-// using reffference:-
-
-// #include <iostream>
-// using namespace std;
-
-// // Function declaration with int& arr and int n
-// bool isSorted(int* arr, int n) {
-//     for (int i = 0; i < n - 1; ++i) {
-//         if (arr[i] > arr[i + 1]) {
-//             return false;
-//         }
-//     }
-//     return true;
-// }
-
-// int main() {
-//     int arr[] = {8, 12, 15};
-//     cout << isSorted(arr, 3); // Passes arr as int*
-
-//     return 0;
-// }
