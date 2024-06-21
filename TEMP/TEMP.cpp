@@ -1,22 +1,19 @@
-#include<bits/stdc++.h>
+#include<iostream>
 using namespace std;
 
 int findLeaders(int * arr, int n){
-    // cout<<arr[n-1]<<" ";
-    int pl = n-1, cl= n-2, index=n-2;
-    while(cl>= 0){
-        // cout<<"first :"<<cl<<endl;
-        if(arr[pl]<arr[cl]){
-            // cout<<arr[cl]<<" ";
-            // swap(arr[cl],arr[index--]);
-            arr[index] = arr[cl];
+
+    if(n == 0 || n==1) return -1;
+
+    int previousLeader = n-1, currentLeader= n-2, index=n-2;
+    while(currentLeader>= 0){
+        if(arr[previousLeader]<arr[currentLeader]){
+            arr[index] = arr[currentLeader];
             index--;
-            pl=cl;
+            previousLeader=currentLeader;
         }
-        cl--;
-        // cout<<"second :"<<cl<<endl;
+        currentLeader--;
     }
-    // cout<<"i : "<<index<<endl;
     return index;
 }
 
@@ -25,6 +22,14 @@ int main()
 {
     int arr[] ={20,30,7,10,4,10,6,5,2}; // 30 10 6 5 2
     int n = 9; 
+    // int arr[] ={10,11}; // 11
+    // int n =2; 
+    // int arr[] ={11,10}; // 11 10
+    // int n =2; 
+    // int arr[] ={11}; // 11
+    // int n = 1; 
+    // int arr[] ={10, 20, 20, 5}; // 20 5
+    // int n = 4; 
     // int arr[] ={7,10,4,10,6,5,2}; // 10 6 5 2
     // int n = 7;
     // int arr[] ={10,20,30}; // 30
@@ -41,9 +46,5 @@ int main()
         cout<<arr[j]<<" ";
     }
 
-
-    cout<<endl;
-
-    // for(auto& i : arr) cout<<i<<" ";
     return 0;
 }
