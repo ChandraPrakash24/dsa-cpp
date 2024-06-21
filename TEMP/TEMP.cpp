@@ -1,50 +1,43 @@
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
-int findLeaders(int * arr, int n){
-
-    if(n == 0 || n==1) return -1;
-
-    int previousLeader = n-1, currentLeader= n-2, index=n-2;
-    while(currentLeader>= 0){
-        if(arr[previousLeader]<arr[currentLeader]){
-            arr[index] = arr[currentLeader];
-            index--;
-            previousLeader=currentLeader;
-        }
-        currentLeader--;
+void freqInSortedArr(int * arr,int & n){
+    if(n == 1 ||n == 0){
+        cout<<arr[0]<<" : "<<1<<endl;
+        return;
     }
-    return index;
+
+    int cnt=1;
+    for(int i=1;i<n;i++){
+        if(arr[i] != arr[i-1]){
+            cout<<arr[i-1]<<" : "<<cnt<<endl;
+            cnt=1;
+            continue;
+        }
+        cnt++;
+    }
+    cout<<arr[n-1]<<" : "<<cnt<<endl;
 }
 
- 
+
 int main()
 {
-    int arr[] ={20,30,7,10,4,10,6,5,2}; // 30 10 6 5 2
-    int n = 9; 
-    // int arr[] ={10,11}; // 11
-    // int n =2; 
-    // int arr[] ={11,10}; // 11 10
-    // int n =2; 
-    // int arr[] ={11}; // 11
-    // int n = 1; 
-    // int arr[] ={10, 20, 20, 5}; // 20 5
-    // int n = 4; 
-    // int arr[] ={7,10,4,10,6,5,2}; // 10 6 5 2
-    // int n = 7;
-    // int arr[] ={10,20,30}; // 30
-    // int n = 3;
-    // int arr[] ={30,20,10}; // 30 20 10
-    // int n = 3;
-    // int arr[] ={1,1,1}; // 1
-    // int n = 3;
+    // int arr[] = {10,10,10,25,30,30,30,30,30,40}; 
+    // int n=10;
+    // int arr[] = {10}; 
+    // int n=1;
+    int arr[] = {10,20}; 
+    // int arr[] = {10,10}; 
+    int n=2;
 
-
-    int index = findLeaders(arr,n);
+    freqInSortedArr(arr,n);
     
-    for(int j=index+1;j<n;j++){
-        cout<<arr[j]<<" ";
-    }
+    /*
+    10 : 3
+    25 : 1
+    30 : 5
+    40 : 1
+    */
 
     return 0;
 }
