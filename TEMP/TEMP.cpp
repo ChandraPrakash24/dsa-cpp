@@ -1,43 +1,29 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void freqInSortedArr(int * arr,int & n){
-    if(n == 1 ||n == 0){
-        cout<<arr[0]<<" : "<<1<<endl;
-        return;
-    }
+int bestTimeToBuyAndSell(int * price, int start, int end){
+    if(start >= end) return 0;
 
-    int cnt=1;
-    for(int i=1;i<n;i++){
-        if(arr[i] != arr[i-1]){
-            cout<<arr[i-1]<<" : "<<cnt<<endl;
-            cnt=1;
-            continue;
+    int maxProfit=0;
+    for(int i=start; i<end;i++){
+        for(int j=i+1;j<=end;j++){
+            if(price[j] > price[i]){
+                int current_max = price[j] - price[i] + bestTimeToBuyAndSell(price, start, i-1) + bestTimeToBuyAndSell(price, j+1, end);
+                maxProfit = max(maxProfit, current_max);
+            }
         }
-        cnt++;
     }
-    cout<<arr[n-1]<<" : "<<cnt<<endl;
+    return maxProfit;
 }
-
 
 int main()
 {
-    // int arr[] = {10,10,10,25,30,30,30,30,30,40}; 
-    // int n=10;
-    // int arr[] = {10}; 
-    // int n=1;
-    int arr[] = {10,20}; 
-    // int arr[] = {10,10}; 
-    int n=2;
+    int arr[] = {1,5,3,1,2,8}; // 11
+    int n=6;
+    // int arr[] = {1,5,3,8,12}; // 13
+    // int n=5;
 
-    freqInSortedArr(arr,n);
-    
-    /*
-    10 : 3
-    25 : 1
-    30 : 5
-    40 : 1
-    */
+    cout<<bestTimeToBuyAndSell(arr,0,n-1);
 
     return 0;
 }
