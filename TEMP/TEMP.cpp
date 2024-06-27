@@ -1,47 +1,37 @@
+// maximum consicutive 1s in an binary array
+// TC: O(n), SC: O(1)
+
 #include<bits/stdc++.h>
 using namespace std;
 
-int trappingTheRainWater(int * arr, int n){
-    
-    int res=0;
-    int lMaxArr[n], rMaxArr[n];
-    int lMax = arr[0];
-    
-    for(int l=0;l<n;l++){
-        if(arr[l] > lMax) {
-            lMax = arr[l];
-            lMaxArr[l] = arr[l];
-            continue;   
+int maxConsicutive1s(int * arr, int n){
+    int max1s = 0,prevMax=0;
+
+    for(int i=0;i<n;i++){
+
+        if(arr[i] == 1){
+            max1s++;
+            continue;
         }
-
-        lMaxArr[l] = lMax;
-    }
-
-    int rMax = arr[n-1];
-    for(int r=n-1;r>=0;r--){
-        if(arr[r] > rMax) {
-            rMax = arr[r];
-            rMaxArr[r] = arr[r];
-            continue;   
+        
+        if(arr[i] != 1){
+            prevMax =  max(max1s,prevMax);
+            max1s=0;
         }
-
-        rMaxArr[r] = rMax;
     }
-
-    for(int i=1;i<n-1;i++){
-        res += (min(lMaxArr[i],rMaxArr[i]) - arr[i]);
-    }
-    return res;
+    return max1s > prevMax ? max1s : prevMax;
 }
+
 
 int main()
 {
-    // int arr[] = {5,0,6,2,3}; // 6
-    // int arr[] = {3,0,1,2,5}; // 6
-    int arr[] = {4,2,0,3,2,5}; // 9
-    int n=6;
+    // int arr[] = {0,1,1,0,1,0}; // 2
+    // int arr[] = {1,1,1,1,1,1}; // 6
+    // int arr[] = {0,0,0,0,0,0}; // 0
+    int arr[] = {1,0,1,1,1,1,0,1,1}; // 4
+    int n=9;
 
-    cout<<trappingTheRainWater(arr,n);
-
+    cout<<maxConsicutive1s(arr,n);
+    
     return 0;
 }
