@@ -2,23 +2,34 @@
 using namespace std;
 
 int trappingTheRainWater(int * arr, int n){
+    
     int res=0;
+    int lMaxArr[n], rMaxArr[n];
+    int lMax = arr[0];
+    
+    for(int l=0;l<n;l++){
+        if(arr[l] > lMax) {
+            lMax = arr[l];
+            lMaxArr[l] = arr[l];
+            continue;   
+        }
+
+        lMaxArr[l] = lMax;
+    }
+
+    int rMax = arr[n-1];
+    for(int r=n-1;r>=0;r--){
+        if(arr[r] > rMax) {
+            rMax = arr[r];
+            rMaxArr[r] = arr[r];
+            continue;   
+        }
+
+        rMaxArr[r] = rMax;
+    }
 
     for(int i=1;i<n-1;i++){
-
-        int lMax=arr[i];
-        for(int l=0;l<i;l++){
-            // if(arr[l] > lMax) lMax = arr[i]; 
-            lMax = max(arr[l],lMax);
-        }
-
-        int rMax=arr[i];
-        for(int r=i+1;r<n;r++){
-            // if(arr[r] > rMax) rMax = arr[i]; 
-            rMax = max(arr[r],rMax);
-        }
-
-        res += (min(lMax,rMax) - arr[i]);
+        res += (min(lMaxArr[i],rMaxArr[i]) - arr[i]);
     }
     return res;
 }
