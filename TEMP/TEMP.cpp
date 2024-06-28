@@ -5,22 +5,25 @@
 using namespace std;
 
 int maxSubArraySum(int * arr, int n){
-    int sum ,prevSum=-1;
+    int sum=0;
+    // int sum=arr[0];
 
     for(int i=0;i<n;i++){
-        sum = arr[i];
-        cout<<"SUM:"<<sum<<" prevSum:"<<prevSum<<endl;
-        for(int j=i+1;j<n;j++){
-            sum += arr[j];
-            cout<<arr[i]<<" ,"<<arr[j]<<" : "<<sum<<endl;
-        }
-        prevSum = max(sum,prevSum);
-        sum = 0;
+        sum+=arr[i];
+        if(sum<0) sum = 0;
     }
-    cout<<sum<<" "<<prevSum<<endl;
 
-    if(sum < 0 || prevSum < 0) return -1;
-    return prevSum > sum ? prevSum : sum;
+    // for(int i=0;i<n-2;i++){
+    //     if((sum += arr[i+1]) < 0){
+    //         sum = arr[i+2];
+    //         cout<<"sum:"<<sum<<endl;
+    //         continue;
+    //         cout<<"after continue"<<endl;
+    //     }
+    //     sum+=arr[i+1];
+    // }
+
+    return sum != 0 ? sum : -1;
 }
 
 
