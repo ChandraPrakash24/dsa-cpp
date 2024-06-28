@@ -1,37 +1,39 @@
-// maximum consicutive 1s in an binary array
-// TC: O(n), SC: O(1)
+// maximum sub array sum
+// TC: O(n^2), SC: O(1)
 
 #include<bits/stdc++.h>
 using namespace std;
 
-int maxConsicutive1s(int * arr, int n){
-    int max1s = 0,prevMax=0;
+int maxSubArraySum(int * arr, int n){
+    int sum ,prevSum=-1;
 
     for(int i=0;i<n;i++){
-
-        if(arr[i] == 1){
-            max1s++;
-            continue;
+        sum = arr[i];
+        cout<<"SUM:"<<sum<<" prevSum:"<<prevSum<<endl;
+        for(int j=i+1;j<n;j++){
+            sum += arr[j];
+            cout<<arr[i]<<" ,"<<arr[j]<<" : "<<sum<<endl;
         }
-        
-        if(arr[i] != 1){
-            prevMax =  max(max1s,prevMax);
-            max1s=0;
-        }
+        prevSum = max(sum,prevSum);
+        sum = 0;
     }
-    return max1s > prevMax ? max1s : prevMax;
+    cout<<sum<<" "<<prevSum<<endl;
+
+    if(sum < 0 || prevSum < 0) return -1;
+    return prevSum > sum ? prevSum : sum;
 }
 
 
 int main()
 {
-    // int arr[] = {0,1,1,0,1,0}; // 2
-    // int arr[] = {1,1,1,1,1,1}; // 6
-    // int arr[] = {0,0,0,0,0,0}; // 0
-    int arr[] = {1,0,1,1,1,1,0,1,1}; // 4
-    int n=9;
+    int arr[] = {2,3,-8,7,-1,2,3}; // 11
+    int n=7;
+    // int arr[] = {5,8,3}; // 16
+    // int n=3;
+    // int arr[] = {-6,-1,-8}; // -1
+    // int n=3;
 
-    cout<<maxConsicutive1s(arr,n);
+    cout<<maxSubArraySum(arr,n);
     
     return 0;
 }
