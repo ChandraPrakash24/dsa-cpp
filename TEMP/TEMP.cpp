@@ -1,48 +1,71 @@
-// permutation with case Changes
+// Letter Case Permutation
+
 
 #include<bits/stdc++.h>
 using namespace std;
 
-void permutationWithCaseChange(string ip_string, string op){
 
-    if(ip_string.empty()){
-        cout<<op<<endl;
+
+void solve(string ip, string op, vector<string>& v){
+    if(ip.empty()){
+        v.push_back(op);
         return;
     }
 
-    string op1 = op;
-    string op2 = op;
+    if(isalpha(ip[0])){
+        string op1 = op;
+        op1.push_back(tolower(ip[0]));
+        solve(ip.substr(1), op1, v);
 
-    op1.push_back(ip_string[0]);
-    op2.push_back(toupper(ip_string[0]));
+        string op2 = op;
+        op2.push_back(toupper(ip[0]));
+        solve(ip.substr(1), op2, v);
+        
+        
+        
+        // string op1 = op;
+        // string op2 = op;
 
+        // op1.push_back(tolower(ip[0]));
+        // op1.push_back(toupper(ip[0]));
 
-    ip_string.erase(ip_string.begin());
+        // // ip.erase(ip.begin());
 
-    permutationWithCaseChange(ip_string,op1);
-    permutationWithCaseChange(ip_string,op2);
+        // // solve(ip,op1, v);
+        // // solve(ip,op2, v);
 
+        // solve(ip.substr(1), op1, v);
+        // solve(ip.substr(1), op2, v);
+    }else{
+        string op1 = op;
+        op1.push_back(ip[0]);
+        // solve(ip,op1, v);
+        solve(ip.substr(1), op1, v);
+    }
     return;
+}
 
+vector<string> preSolve(string s){
+
+    vector<string> v;
+    string ip = s;
+    string op = "";
+
+    solve(ip, op, v);
+    
+    return v;
 }
 
 
 int main()
 {
-    string s; cin>>s;
-    string op = "";
-
-    permutationWithCaseChange(s,op); 
+    // string s; cin>>s;
+    string s = "a1B2";
     
-    /*
-        i/p:-
-            ab
-        output:-
-            ab
-            aB
-            Ab
-            AB
-     */
+    vector<string> res = preSolve(s);
+
+    for(auto& i : res) cout<<i<<endl;
+
 
     return 0;
 }
