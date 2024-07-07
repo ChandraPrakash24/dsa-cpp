@@ -1,71 +1,57 @@
-// Letter Case Permutation
-
+// Generate all balance paranthesis
 
 #include<bits/stdc++.h>
 using namespace std;
 
-
-
-void solve(string ip, string op, vector<string>& v){
-    if(ip.empty()){
+void solve(int n, string op, int o, int c, vector<string>& v){
+    if(o == 0 && c == 0){
         v.push_back(op);
         return;
     }
 
-    if(isalpha(ip[0])){
+    if(o != 0){
         string op1 = op;
-        op1.push_back(tolower(ip[0]));
-        solve(ip.substr(1), op1, v);
-
-        string op2 = op;
-        op2.push_back(toupper(ip[0]));
-        solve(ip.substr(1), op2, v);
-        
-        
-        
-        // string op1 = op;
-        // string op2 = op;
-
-        // op1.push_back(tolower(ip[0]));
-        // op1.push_back(toupper(ip[0]));
-
-        // // ip.erase(ip.begin());
-
-        // // solve(ip,op1, v);
-        // // solve(ip,op2, v);
-
-        // solve(ip.substr(1), op1, v);
-        // solve(ip.substr(1), op2, v);
-    }else{
-        string op1 = op;
-        op1.push_back(ip[0]);
-        // solve(ip,op1, v);
-        solve(ip.substr(1), op1, v);
+        op1.push_back('(');
+        solve(n,op1,o-1,c,v);
     }
+
+    if(o < c){
+        string op1 = op;
+        op1.push_back(')');
+        solve(n,op1,o,c-1,v);
+    }
+
     return;
 }
 
-vector<string> preSolve(string s){
-
-    vector<string> v;
-    string ip = s;
+vector<string> genAllBalParen(int n){
+    int o = n, c = n;
     string op = "";
-
-    solve(ip, op, v);
-    
+    vector<string> v;
+    solve(n,op,o,c,v);
     return v;
 }
 
-
 int main()
 {
-    // string s; cin>>s;
-    string s = "a1B2";
-    
-    vector<string> res = preSolve(s);
+    // int n=2;
+    int n=3;
+    vector<string> res = genAllBalParen(n);
 
     for(auto& i : res) cout<<i<<endl;
-
-
+    
     return 0;
 }
+
+// OUTPUT:-
+
+// for n = 2
+// (())
+// ()()
+
+// for n = 3
+// ((()))
+// (()())
+// (())()
+// ()(())
+// ()()()
