@@ -9,13 +9,13 @@ void solve(int n, string op, int o, int c, vector<string>& v){
         return;
     }
 
-    if(o != 0){
+    if(o != 0){ // first choice is '(' so if avilable push it
         string op1 = op;
         op1.push_back('(');
         solve(n,op1,o-1,c,v);
     }
 
-    if(o < c){
+    if(o < c){ // it means wether open bracket become '0' or open bracket is lest then close bracket hence push ')'
         string op1 = op;
         op1.push_back(')');
         solve(n,op1,o,c-1,v);
