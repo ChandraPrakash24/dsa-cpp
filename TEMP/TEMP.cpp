@@ -1,57 +1,67 @@
-// Generate all balance paranthesis
+// Print N-bit binary numbers having more 1’s than 0’s for any prefix
 
 #include<bits/stdc++.h>
 using namespace std;
 
-void solve(int n, string op, int o, int c, vector<string>& v){
-    if(o == 0 && c == 0){
+void solve(int o, int z,string op, int n, vector<string>& v){
+    if(n == 0){
         v.push_back(op);
         return;
     }
 
-    if(o != 0){ // first choice is '(' so if avilable push it
+    if(o == z){
         string op1 = op;
-        op1.push_back('(');
-        solve(n,op1,o-1,c,v);
+        op1.push_back('1');
+        solve(o+1,z,op1,n-1,v);
     }
 
-    if(o < c){ // it means wether open bracket become '0' or open bracket is lest then close bracket hence push ')'
+    if(o > z){
         string op1 = op;
-        op1.push_back(')');
-        solve(n,op1,o,c-1,v);
+        string op2 = op;
+        op1.push_back('1');
+        op2.push_back('0');
+        solve(o+1,z,op1,n-1,v);
+        solve(o,z+1,op2,n-1,v);
     }
 
     return;
 }
 
-vector<string> genAllBalParen(int n){
-    int o = n, c = n;
-    string op = "";
+vector<string> binarayNum(int n){
     vector<string> v;
-    solve(n,op,o,c,v);
+
+    int zeros = 0, ones = 0;
+    string op = "";
+
+    solve(ones,zeros,op,n,v);
+
     return v;
 }
 
 int main()
 {
-    // int n=2;
-    int n=3;
-    vector<string> res = genAllBalParen(n);
+    int n=5;
 
-    for(auto& i : res) cout<<i<<endl;
+    vector<string> res = binarayNum(n); 
     
+    for(auto& i : res) cout<<i<<endl;
+
     return 0;
 }
-
-// OUTPUT:-
-
-// for n = 2
-// (())
-// ()()
-
+// output:-
 // for n = 3
-// ((()))
-// (()())
-// (())()
-// ()(())
-// ()()()
+// 111
+// 110
+// 101
+
+// for n = 5
+// 11111
+// 11110
+// 11101
+// 11100
+// 11011
+// 11010
+// 11001
+// 10111
+// 10110
+// 10101
