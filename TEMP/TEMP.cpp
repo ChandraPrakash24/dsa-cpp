@@ -1,67 +1,47 @@
-// Print N-bit binary numbers having more 1’s than 0’s for any prefix
 
 #include<bits/stdc++.h>
 using namespace std;
 
-void solve(int o, int z,string op, int n, vector<string>& v){
-    if(n == 0){
-        v.push_back(op);
-        return;
-    }
+int solve(vector<int> arr,int index, int k){
+    if(arr.size() == 1) return arr[0];
 
-    if(o == z){
-        string op1 = op;
-        op1.push_back('1');
-        solve(o+1,z,op1,n-1,v);
-    }
+    index = (index+k) % arr.size();
 
-    if(o > z){
-        string op1 = op;
-        string op2 = op;
-        op1.push_back('1');
-        op2.push_back('0');
-        solve(o+1,z,op1,n-1,v);
-        solve(o,z+1,op2,n-1,v);
-    }
+    arr.erase(arr.begin() + index);
 
-    return;
+    for(auto& i : arr) cout<<i<<" ";
+    cout<<endl;
+
+
+    return solve(arr,index, k);
+
 }
 
-vector<string> binarayNum(int n){
-    vector<string> v;
+int josephusProblem(int n, int k){
 
-    int zeros = 0, ones = 0;
-    string op = "";
+    vector<int> arr(n);
 
-    solve(ones,zeros,op,n,v);
+    for(int i=1;i<=n;i++) arr[i-1] = i;
 
-    return v;
+    k--;
+
+    int index=0;
+
+    cout<<"size: "<<arr.size()<<endl;;
+
+    for(auto& i : arr) cout<<i<<endl;
+
+    cout<<"k is : "<<k<<endl;
+    
+    return solve(arr,index,k);
 }
 
 int main()
 {
-    int n=5;
 
-    vector<string> res = binarayNum(n); 
+    // cout<<josephusProblem(5,2); // 3
+    cout<<josephusProblem(5,3); // 4
+
     
-    for(auto& i : res) cout<<i<<endl;
-
     return 0;
 }
-// output:-
-// for n = 3
-// 111
-// 110
-// 101
-
-// for n = 5
-// 11111
-// 11110
-// 11101
-// 11100
-// 11011
-// 11010
-// 11001
-// 10111
-// 10110
-// 10101
