@@ -5,15 +5,23 @@ using namespace std;
 // } Driver Code Ends
 
 class Solution{
-    public:
-    //You need to complete this fucntion
+public:
+    long long MOD = 1000000007;
     
-    long long power(int N,int R)
-    {
-       
+    long long power(int N, int R) {
+        if (R == 0) {
+            return 1;
+        }
         
+        long long half_pow = power(N, R / 2) % MOD;
+        long long result = (half_pow * half_pow) % MOD;
+        
+        if (R % 2 != 0) {
+            result = (result * N) % MOD;
+        }
+        
+        return result;
     }
-
 };
 
 //{ Driver Code Starts.
