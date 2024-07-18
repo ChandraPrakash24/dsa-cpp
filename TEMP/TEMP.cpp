@@ -1,64 +1,21 @@
-//{ Driver Code Starts
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-// } Driver Code Ends
+bool isLucky(int current_position, int current_pass){
+    if(current_position < current_pass) return true;
+    if((current_position % current_pass) == 0) return false;
 
-class Solution{
-public:
-    long long MOD = 1000000007;
-    
-    long long power(int N, int R) {
-        if (R == 0) {
-            return 1;
-        }
-        
-        long long half_pow = power(N, R / 2) % MOD;
-        long long result = (half_pow * half_pow) % MOD;
-        
-        if (R % 2 != 0) {
-            result = (result * N) % MOD;
-        }
-        
-        return result;
-    }
-};
+    return isLucky((current_position - current_position/current_pass),current_pass+1);
 
-//{ Driver Code Starts.
-
-// compute reverse of a number 
-long long rev(long long n)
-{
-    long long rev_num = 0;
-     while(n > 0) 
-      { 
-        rev_num = rev_num*10 + n%10; 
-        n = n/10; 
-      } 
-      return rev_num;
 }
-
-
-
 
 int main()
 {
-    int T;
-    cin>>T;//testcases
-    
-    while(T--)
-    {
-        long long N;
-        cin>>N;//input N
-        
-        long long R = 0; 
-        
-        // reverse the given number n
-        R = rev(N);
-        Solution ob;
-        //power of the number to it's reverse
-        long long ans =ob.power(N,R);
-        cout << ans<<endl;
-    }
+    if (isLucky(7,2)) cout<<7<<" is lucky"<<endl;
+    else cout<<7<<" is NOT lucky"<<endl;
+
+    if (isLucky(9,2)) cout<<9<<" is lucky"<<endl;
+    else cout<<9<<" is NOT lucky"<<endl;
+
+    return 0;
 }
-// } Driver Code Ends
