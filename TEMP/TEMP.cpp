@@ -1,30 +1,41 @@
-// maximum sub-array sum (optmize solution)
-// TC: O(n)   SC: O(1)
-// KADANE'S ALGORITHAM
-
+// Boyer-Moore Majority Voting Algorithm
+// TC : O(n)    SC : (1)
 #include<bits/stdc++.h>
 using namespace std;
 
-int main()
-{
-    int arr[] = {-2,-3,4,-1,-2,1,5,-3}; // 7
-    // int arr[] = {2}; // 2
-    // int arr[] = {5,4,1,7,8}; // 25
-    int n = sizeof(arr) / sizeof(arr[0]);
+// int majorityEl(int *  arr, int n){
+int majorityEl(vector<int> & arr, int n){
+    int res = 0, count = 1;
+    for(int i=1; i<n;i++){
+        if(arr[i] == arr[res]) count++;
+        else count--;
 
-    int max_sum = arr[0];
-    int curr_sum = arr[0];
-
-    for(int i=1; i<n; i++){
-        if((arr[i] + curr_sum) >= 0){
-            curr_sum += arr[i];
-            max_sum = max(curr_sum,max_sum);
-        }else{
-            curr_sum = 0;
+        if(count == 0) {
+            res = i; count = 1;
         }
     }
-    
-    cout<<max_sum;
 
+    count = 0;
+    for(int i=0;i<n;i++){
+        if(arr[i] == arr[res]) count++;
+    }
+
+    if(count <= (n/2)) res = -1;
+
+    return res;
+}
+
+int main()
+{
+    int n; cin>>n; vector<int> v(n); for(auto& i : v) cin>>i;
+
+    // int arr[] = {8,8,6,6,6,4,6};
+
+    // cout<<majorityEl(arr,7);
+
+    int idx = majorityEl(v,n);
+
+    cout<<"majority element is "<<v[idx]<<" at index "<<idx;
+    
     return 0;
 }
