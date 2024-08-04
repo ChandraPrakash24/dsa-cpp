@@ -1,41 +1,50 @@
-// Boyer-Moore Majority Voting Algorithm
-// TC : O(n)    SC : (1)
 #include<bits/stdc++.h>
 using namespace std;
 
-// int majorityEl(int *  arr, int n){
-int majorityEl(vector<int> & arr, int n){
-    int res = 0, count = 1;
-    for(int i=1; i<n;i++){
-        if(arr[i] == arr[res]) count++;
-        else count--;
-
-        if(count == 0) {
-            res = i; count = 1;
-        }
-    }
-
-    count = 0;
-    for(int i=0;i<n;i++){
-        if(arr[i] == arr[res]) count++;
-    }
-
-    if(count <= (n/2)) res = -1;
-
-    return res;
-}
-
 int main()
 {
-    int n; cin>>n; vector<int> v(n); for(auto& i : v) cin>>i;
+    int n=0;
 
-    // int arr[] = {8,8,6,6,6,4,6};
+    int arr[n] = {}; // 3 2
+    // int arr[n] = {1}; // 3 2
+    // int arr[n] = {1, 0, 1, 0, 1}; // 3 2
+    // int arr[n] = {0,1}; // 1 1
+    // int arr[n] = {0,0,0,0,0,0}; 
+    // int arr[n] = {0,0,1,1,1,0}; 
+    // int arr[n] = {1,1,0,0,0,1}; 
 
-    // cout<<majorityEl(arr,7);
-
-    int idx = majorityEl(v,n);
-
-    cout<<"majority element is "<<v[idx]<<" at index "<<idx;
+    if (n == 0) {
+        cout << "0" << endl; // No elements in the array
+        return 0;
+    }
     
+    if (n == 1) {
+        cout << "1" << endl; // Single element array, only one group
+        return 0;
+    }
+
+    int zeroCount = 0;
+    int oneCount = 0;
+
+    for(int i=0; i<n-1 ; i++) {
+
+        if(arr[i] == 0 && arr[i+1] == 1){
+            zeroCount++;
+        }
+
+        if(arr[i] == 1 && arr[i+1] == 0){
+            oneCount++;
+        }
+
+    }  
+    
+    arr[n-1] == 1 ? oneCount++ : zeroCount++;
+
+    cout<<"one count is "<<oneCount<<endl;
+    cout<<"zero count is "<<zeroCount<<endl;
+
+    cout<<min(oneCount,zeroCount);
+
+
     return 0;
 }
