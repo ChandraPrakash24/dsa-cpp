@@ -3,12 +3,12 @@ using namespace std;
 
 int main()
 {
-    int n=0;
+    int n=5;
 
-    int arr[n] = {}; // 3 2
-    // int arr[n] = {1}; // 3 2
-    // int arr[n] = {1, 0, 1, 0, 1}; // 3 2
-    // int arr[n] = {0,1}; // 1 1
+    // int arr[n] = {}; // 
+    // int arr[n] = {1}; // 
+    int arr[n] = {1, 0, 1, 0, 1}; // from 1 to 1 from 3 to 3
+    // int arr[n] = {0,1}; // from 1 to 1 
     // int arr[n] = {0,0,0,0,0,0}; 
     // int arr[n] = {0,0,1,1,1,0}; 
     // int arr[n] = {1,1,0,0,0,1}; 
@@ -23,28 +23,18 @@ int main()
         return 0;
     }
 
-    int zeroCount = 0;
-    int oneCount = 0;
 
-    for(int i=0; i<n-1 ; i++) {
+    // assumption 1 : if arr[0] == arr[n-1] then one less group (any 1 or 0)
+    // assumption 2 : if arr[0] != arr[n-1] then equal group of 1 or 0
+    // we alsway flip 2nd group (any 1 or 0)
 
-        if(arr[i] == 0 && arr[i+1] == 1){
-            zeroCount++;
+    for(int i=1; i<n ; i++) {
+        if(arr[i] != arr[i-1]){ // to detect transition from either 0 to 1 or 1 to 0
+            if(arr[i] != arr[0]) cout<<"from "<<i<<" to "; // which transition: start (0 -> 1) 
+            else cout<<i-1<<endl; // which transition: end (1 -> 0) 
         }
-
-        if(arr[i] == 1 && arr[i+1] == 0){
-            oneCount++;
-        }
-
     }  
-    
-    arr[n-1] == 1 ? oneCount++ : zeroCount++;
-
-    cout<<"one count is "<<oneCount<<endl;
-    cout<<"zero count is "<<zeroCount<<endl;
-
-    cout<<min(oneCount,zeroCount);
-
+    if(arr[n-1] != arr[0]) cout<<n-1<<endl; // to handle last fit flip as ne group and ended there as well ex : 0011001101 < -- this last 1
 
     return 0;
 }
