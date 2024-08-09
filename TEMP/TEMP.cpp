@@ -1,43 +1,36 @@
-// Sliding Window Technique
-// TC : O(n)   SC : O (1) 
-
 #include<bits/stdc++.h>
 using namespace std;
 
-int slidingWondowSumOfKEl(vector<int>& v, int k) {
-
-    // Edge case: window size is greater than array size or invalid
-    if (k <= 0 || v.size() < k) {
-        cout << "Invalid window size" << endl;
-        // cerr << "Invalid window size" << endl;
-        return -1; // or handle error appropriately
-    }
+bool subarrWithSum(vector<int>& arr, int sum) {
+    static int curWin = 1;
+    if (curWin > arr.size()) return false;
 
     int currSum = 0;
-    for (int i = 0; i < k; i++) currSum += v[i];
+    for (int i = 0; i < curWin; i++) currSum += arr[i];
 
-    int res = currSum;
+    if (currSum == sum) return true;
 
-    for (int i = k; i < v.size(); i++) { // i taping last element in next iteration
-        currSum = currSum + v[i] - v[i - k];
-        res = max(currSum, res);
+
+    for (int i = curWin; i < arr.size(); i++) {
+        currSum = currSum + arr[i] - arr[i - curWin];
+        if (currSum == sum) return true;
     }
 
-    return res;
+    curWin++;
+
+    subarrWithSum(arr, sum);
+
 }
 
 int main()
 {
-    int n = 6;
-    vector<int> v(n);
-    v = { 1, 8, 30, -5, 20, 7 }; // 53
-    int k = 4;
+    // int n; cin>>n;
+    vector<int> v(2);
+    v = {2,4};
 
-    int result = slidingWondowSumOfKEl(v, k);
+    if (subarrWithSum(v, 4)) cout << "Yes" << endl;
+    else cout << "No" << endl;
 
-    if (result != -1) {
-        cout << result << endl;
-    }
 
     return 0;
 }
