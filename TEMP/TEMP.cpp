@@ -1,40 +1,43 @@
+// Sliding Window Technique
+// TC : O(n)   SC : O (1) 
+
 #include<bits/stdc++.h>
 using namespace std;
 
+int slidingWondowSumOfKEl(vector<int>& v, int k) {
+
+    // Edge case: window size is greater than array size or invalid
+    if (k <= 0 || v.size() < k) {
+        cout << "Invalid window size" << endl;
+        // cerr << "Invalid window size" << endl;
+        return -1; // or handle error appropriately
+    }
+
+    int currSum = 0;
+    for (int i = 0; i < k; i++) currSum += v[i];
+
+    int res = currSum;
+
+    for (int i = k; i < v.size(); i++) { // i taping last element in next iteration
+        currSum = currSum + v[i] - v[i - k];
+        res = max(currSum, res);
+    }
+
+    return res;
+}
+
 int main()
 {
-    int n=5;
+    int n = 6;
+    vector<int> v(n);
+    v = { 1, 8, 30, -5, 20, 7 }; // 53
+    int k = 4;
 
-    // int arr[n] = {}; // 
-    // int arr[n] = {1}; // 
-    int arr[n] = {1, 0, 1, 0, 1}; // from 1 to 1 from 3 to 3
-    // int arr[n] = {0,1}; // from 1 to 1 
-    // int arr[n] = {0,0,0,0,0,0}; 
-    // int arr[n] = {0,0,1,1,1,0}; 
-    // int arr[n] = {1,1,0,0,0,1}; 
+    int result = slidingWondowSumOfKEl(v, k);
 
-    if (n == 0) {
-        cout << "0" << endl; // No elements in the array
-        return 0;
+    if (result != -1) {
+        cout << result << endl;
     }
-    
-    if (n == 1) {
-        cout << "1" << endl; // Single element array, only one group
-        return 0;
-    }
-
-
-    // assumption 1 : if arr[0] == arr[n-1] then one less group (any 1 or 0)
-    // assumption 2 : if arr[0] != arr[n-1] then equal group of 1 or 0
-    // we alsway flip 2nd group (any 1 or 0)
-
-    for(int i=1; i<n ; i++) {
-        if(arr[i] != arr[i-1]){ // to detect transition from either 0 to 1 or 1 to 0
-            if(arr[i] != arr[0]) cout<<"from "<<i<<" to "; // which transition: start (0 -> 1) 
-            else cout<<i-1<<endl; // which transition: end (1 -> 0) 
-        }
-    }  
-    if(arr[n-1] != arr[0]) cout<<n-1<<endl; // to handle last fit flip as ne group and ended there as well ex : 0011001101 < -- this last 1
 
     return 0;
 }
