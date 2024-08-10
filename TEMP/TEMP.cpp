@@ -1,34 +1,41 @@
+// Variable size sliding window
+// TC : O (n)   SC : O (1)
+
 #include<bits/stdc++.h>
 using namespace std;
 
 bool subarrWithSum(vector<int>& arr, int sum) {
-    static int curWin = 1;
-    if (curWin > arr.size()) return false;
 
-    int currSum = 0;
-    for (int i = 0; i < curWin; i++) currSum += arr[i];
+    int res = 0, start = 0, end = 0;
 
-    if (currSum == sum) return true;
-
-
-    for (int i = curWin; i < arr.size(); i++) {
-        currSum = currSum + arr[i] - arr[i - curWin];
-        if (currSum == sum) return true;
+    while (start <= end && end < arr.size()) {
+        if (res <= sum) {
+            res += arr[end++];
+            cout << res << " ";
+            if (res == sum) {
+                cout << start << " <-> " << end - 1 << endl;
+                return true;
+            }
+        }
+        else {
+            res -= arr[start++];
+            if (res == sum) {
+                cout << start << " <-> " << end - 1 << endl;
+                return true;
+            }
+        }
     }
 
-    curWin++;
-
-    subarrWithSum(arr, sum);
+    return false;
 
 }
 
 int main()
 {
-    // int n; cin>>n;
-    vector<int> v(2);
-    v = {2,4};
+    vector<int> v(6);
+    v = { 1,4,20,3,10,5 };
 
-    if (subarrWithSum(v, 4)) cout << "Yes" << endl;
+    if (subarrWithSum(v, 26)) cout << "Yes" << endl;
     else cout << "No" << endl;
 
 
