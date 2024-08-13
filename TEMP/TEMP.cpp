@@ -1,56 +1,31 @@
-this code is correct producing correct out put but i dot get the logic of "getSum(1, 1, res)":-
-please dry run for this. (under the hood)
-
-
-code:-
-
 #include<bits/stdc++.h>
 using namespace std;
 
-vector<int> getPrefix(vector<int>& arr, int size) {
-    vector<int> v(size, 0);
+bool isEquiPoint(vector<int>& arr, int n) {
 
-    int prefix = 0;
+    int rightSum = 0;
 
-    for (int i = 0; i < size;i++) {
-        v[i] = prefix + arr[i];
-        prefix = v[i];
+    for (int i = 0; i < n;i++) {
+        rightSum += arr[i]; // calculating prefix sum
     }
 
-    return v;
-}
+    int leftSum = 0;
 
-int getSum(int l, int r, vector<int>& sum) {
-    return l == 0 ? sum[r] : sum[r] - sum[l - 1];
+    for (int i = 0; i < n; i++) {
+        rightSum -= arr[i]; // removing current place element
+        if (leftSum == rightSum) return true;
+        leftSum += arr[i]; // adding current standing elemnet to left sum
+    }
+    return false;
 }
 
 int main()
 {
-    int n; cin >> n;
-    vector<int> arr(n);
-    for (auto& i : arr) cin >> i;
+    vector<int> arr(6);
+    arr = { 3,4,8,-9,9,7 }; // Yes
+    // arr = { 3,4,8,-9,9,77 }; // No
 
-    vector<int> res = getPrefix(arr, n);
-
-    for (auto& i : res) cout << i << " ";
-
-    cout << getSum(0, 0, res) << endl;
-    cout << getSum(0, 1, res) << endl;
-    cout << getSum(1, 1, res) << endl;
-    cout << getSum(1, 3, res) << endl;
-    cout << getSum(3, 6, res) << endl;
-
+    cout << isEquiPoint(arr, 6);
 
     return 0;
 }
-
-// OUTPUT:-
-
-// 7
-// 1 2 3 4 5 6 7
-// 1 3 6 10 15 21 28
-// 1
-// 3
-// 2
-// 9
-// 22
