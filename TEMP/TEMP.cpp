@@ -1,31 +1,35 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-bool isEquiPoint(vector<int>& arr, int n) {
+bool isThreePartision(vector<int>& arr, int n) {
+    int sum = 0;
+    for (auto& i : arr) sum += i;
 
-    int rightSum = 0;
+    if ((sum % 3) != 0) return false; // if sum is not divisible by 3 then return false
 
-    for (int i = 0; i < n;i++) {
-        rightSum += arr[i]; // calculating prefix sum
-    }
-
-    int leftSum = 0;
+    int tragetSum = sum / 3;
+    int currentSum = 0;
+    int partisionCount = 0;
 
     for (int i = 0; i < n; i++) {
-        rightSum -= arr[i]; // removing current place element
-        if (leftSum == rightSum) return true;
-        leftSum += arr[i]; // adding current standing elemnet to left sum
+        currentSum += arr[i];
+        if (currentSum == tragetSum) {
+            partisionCount++;
+            currentSum = 0;
+        }
+        if (partisionCount == 2) return true;
     }
+
     return false;
 }
 
 int main()
 {
-    vector<int> arr(6);
-    arr = { 3,4,8,-9,9,7 }; // Yes
-    // arr = { 3,4,8,-9,9,77 }; // No
+    vector<int> arr(8);
+    // arr = { 5,2,6,1,1,1,1,4 }; // 1
+    arr = { 5,2,6,1,1,1,1,5 }; // 0
 
-    cout << isEquiPoint(arr, 6);
+    cout << isThreePartision(arr, 8);
 
     return 0;
 }
