@@ -1,35 +1,20 @@
-/*
-    Reverse array in groups
-    Input: k = 3, arr= [1, 2, 3, 4, 5]
-    Output: [3, 2, 1, 5, 4]
-    Explanation: First group consists of elements 1, 2, 3. Second group consists of 4,5.
+#include <bits/stdc++.h>
+using namespace std;
 
-    Input: k = 5, arr = [5, 6, 8, 9]
-    Output: [9, 8, 6, 5]
-    Explnation: Since k is greater than array size, the entire array is reversed.
+int main()
+{
+    int arr[] = {1, 2, 3, 4, 5, 6};
+    int n = sizeof(arr) / sizeof(arr[0]); // Determine the size of the array
 
-    TC: O(n)
-    SC: O(1) 
-
-*/
-
-
-class Solution {
-public:
-    void reverseInGroups(vector<long long int>& arr, int k) {
-        int n = arr.size();
-        for (int i = 0; i < n; i = i + k) {
-            int l = i, r = i + k - 1;
-            if (i + k > n) {
-                r = n - 1;
-                while (l <= r) {
-                    swap(arr[r--], arr[l++]);
-                }
-                return;
-            }
-            while (l <= r) {
-                swap(arr[r--], arr[l++]);
+    for (int i = 0; i < n; i += 3) {
+        cout << arr[i] << endl;
+        for (int j = i + 1; j < n; j += 3) {
+            cout << arr[j] << endl;
+            for (int k = j + 1; k < n; k += 3) {
+                cout << arr[k] << endl;
             }
         }
     }
-};
+
+    return 0;
+}
