@@ -1,46 +1,35 @@
-#include<bits/stdc++.h>
-using namespace std;
+/*
+    Reverse array in groups
+    Input: k = 3, arr= [1, 2, 3, 4, 5]
+    Output: [3, 2, 1, 5, 4]
+    Explanation: First group consists of elements 1, 2, 3. Second group consists of 4,5.
 
-int  MaxAppEl(int* left, int l, int* right, int r) {
+    Input: k = 5, arr = [5, 6, 8, 9]
+    Output: [9, 8, 6, 5]
+    Explnation: Since k is greater than array size, the entire array is reversed.
 
-    vector<int> freq(100, 0);
-    int lI = 0, rI = 0;
+    TC: O(n)
+    SC: O(1) 
 
-    while (!(lI >= l && rI >= r)) {
-        if (lI < l) freq[left[lI]] = 1;
-        if (rI < r) freq[right[rI]] = -1;
-        lI++;
-        rI++;
+*/
+
+
+class Solution {
+public:
+    void reverseInGroups(vector<long long int>& arr, int k) {
+        int n = arr.size();
+        for (int i = 0; i < n; i = i + k) {
+            int l = i, r = i + k - 1;
+            if (i + k > n) {
+                r = n - 1;
+                while (l <= r) {
+                    swap(arr[r--], arr[l++]);
+                }
+                return;
+            }
+            while (l <= r) {
+                swap(arr[r--], arr[l++]);
+            }
+        }
     }
-
-    int res = 0, resIndex = freq[0] == 1 ? 1 : 0;
-    for (int i = 0; i < 100; i++) {
-        if (freq[i] == 1) freq[i] = ++res;
-        else if (freq[i] == -1) freq[i] = --res;
-        else freq[i] = res;
-
-        if (i != 0 && freq[i] > freq[i - 1]) resIndex = i;
-    }
-
-    return resIndex;
-}
-
-int main()
-{
-    // int left[] = { 2,3,1 }; // 3 (3 and 4 both come 3 time but we return first occurance)
-    // int right[] = { 5,4,6 };
-    // // int left[] = { 1,2,0 }; // 2 (2 and 3 both come 3 time but we return first occurance)
-    // // int right[] = { 4,3,5 };
-    // // int left[] = { 1,2,4 };
-    // // int right[] = { 4,5,7 };
-
-    // cout << "Maximum apparing elemnt in the given range array is: " << MaxAppEl(left, 3, right, 3);
-
-
-    int left[] = { 10, 15, 30 };
-    int right[] = { 15, 25, 35 };
-
-    cout << MaxAppEl(left, 3, right, 3);
-
-    return 0;
-}
+};
