@@ -1,20 +1,50 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm> // For std::sort
+#include <cmath> // For std::floor
+
 using namespace std;
 
-int main()
-{
-    int arr[] = {1, 2, 3, 4, 5, 6};
-    int n = sizeof(arr) / sizeof(arr[0]); // Determine the size of the array
-
-    for (int i = 0; i < n; i += 3) {
-        cout << arr[i] << endl;
-        for (int j = i + 1; j < n; j += 3) {
-            cout << arr[j] << endl;
-            for (int k = j + 1; k < n; k += 3) {
-                cout << arr[k] << endl;
-            }
-        }
+int main() {
+    int N;
+    cin >> N;
+    
+    vector<int> a(N);
+    int sum = 0;
+    
+    for (int i = 0; i < N; ++i) {
+        cin >> a[i];
+        sum += a[i];
     }
 
+    // Calculate mean and floor it
+    double mean = static_cast<double>(sum) / N;
+    int floored_mean = static_cast<int>(floor(mean));
+    
+    // Sort the array
+    sort(a.begin(), a.end());
+    
+    // Calculate median
+    int median;
+    if (N % 2 == 1) {
+        // Odd number of elements
+        median = a[N / 2];
+    } else {
+        // Even number of elements
+        int mid1 = a[N / 2 - 1];
+        int mid2 = a[N / 2];
+        median = static_cast<int>(floor((mid1 + mid2) / 2.0));
+    }
+    
+    // Output mean and median
+    cout << floored_mean << " " << median << endl;
+    
     return 0;
 }
+
+/*
+    Input:
+    N = 4
+    a[] = {2, 8, 3, 4}
+    Output: 4 3
+ */
