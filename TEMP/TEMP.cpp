@@ -1,25 +1,26 @@
+// Print all Leaders
+// TC: O(n) SC: O(1)
+
 #include<bits/stdc++.h>
 using namespace std;
 
 int main()
 {
-    vector<int> arr = { 1, 2, 3, 4, 5, 6, 7 };
-    int k = 3;
-    int n = 7;
+    int arr[] = {30, 10, 10, 5};
+    int n = 4;
 
-    k = k % n;
-    cout << k << endl;
+    int prevLeader = arr[n - 1];
+    int k = n - 2;
+    for (int i = n - 2;i >= 0; --i) {
+        if (arr[i] >= arr[i + 1] && arr[i] >= prevLeader) {
+            prevLeader = arr[i];
+            arr[k--] = arr[i];
+        }
+    }
 
-    // rotate to Right
-    reverse(arr.begin(), arr.begin() + k);
-    reverse(arr.begin() + k, arr.end());
-    // rotate to left
-    // reverse(arr.begin(),arr.begin()+(n-k));
-    // reverse(arr.begin()+(n-k),arr.end());
-    reverse(arr.begin(), arr.end());
-
-
-    for (auto& i : arr) cout << i << " ";
+    for(int j=k+1; j<n; j++){
+        cout<<arr[j]<<" ";
+    }
 
     return 0;
 }
